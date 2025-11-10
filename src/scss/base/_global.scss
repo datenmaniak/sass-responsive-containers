@@ -1,64 +1,179 @@
 @use '../core' as core;
+@use "sass:map";
 
+// font-size: 62.5% → Esto convierte el tamaño base de fuente del 
+// navegador (normalmente 16px) en 10px (16 × 0.625). 
+// 👉 Ventaja: facilita el cálculo con rem. Por ejemplo,
+// 1.6rem=16px, 2.4rem=24px, etc. 👉 Nota: no cambia el zoom real del navegador,
+// Solo la referencia para rem. 
 html {
     font-size: 62.5%;
     box-sizing: border-box;
 }
 
 *,
-*:before,
-*:after {
+*::before,
+*::after {
     box-sizing: inherit;
 }
 
-// body {
-//     font-family: core.$primary-font;
-//     font-size: 1.6rem;
-//     line-height: 1.8;
-// }
+body {
+    font-family: core.$primary-font;
+    font-size: 1.6rem;
+    line-height: 1.5;
+}
 
 // p {
 //     color: #0b0b0b;
 //     font-size: 2rem;
 // }
 
-// .container {
-//     width: 95%;
-//     max-width: 120rem;
-//     margin: 0 auto;
+
+
+a {
+    text-decoration: none;
+}
+
+img,
+picture {
+    width: 100%;
+    display: block;
+}
+
+h1,
+h2,
+h3 {
+    font-family: core.$secondary-font;
+    font-weight: 300;
+    text-align: center;
+
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+
+// p {
+//     font-size: 2rem;
 // }
 
-// a {
-//     text-decoration: none;
+
+
+// li {
+//     font-size: 1.2rem;
 // }
 
-// img,
-// picture {
-//     width: 100%;
-//     display: block;
-// }
+a {
+    text-decoration: none;
+}
 
-// h1,
-// h2,
-// h3 {
-//     font-family: core.$secondary-font;
-//     font-weight: 300;
-//     text-align: center;
-
+// h1 {
+//     font-size: 4.8rem;
 // }
 
 // h1 {
-//     font-size: 3.8rem;
+//     font-size: clamp(2.4rem, 5vw, 4.8rem);
 // }
 
-// h2 {
-//     font-size: 3.4rem;
-// }
 
-// h3 {
-//     font-size: 3rem;
-// }
+h2 {
+    font-size: 4.4rem;
+}
 
-// h4 {
-//     font-size: 2.6rem;
-// }
+h3 {
+    font-size: 3.5rem;
+}
+
+h4 {
+    font-size: 2.6rem;
+}
+
+// Escala modular tipográfica
+$font-sizes: (
+    body: 1.6rem,
+    // 16px
+    paragraph: 1.6rem,
+    // 16px, igual que body
+    list: 1.6rem,
+    // 16px, consistente con párrafos
+    small: 1.2rem,
+    // 12px
+    h6: 1.8rem,
+    // 18px
+    h5: 2.0rem,
+    // 20px
+    h4: 2.4rem,
+    // 24px
+    h3: 3.0rem,
+    // 30px
+    h2: 3.6rem,
+    // 36px
+    h1: 4.8rem // 48px
+);
+
+// Mixin para aplicar tamaños
+@mixin font-size($element) {
+    font-size: map.get($font-sizes, $element);
+    line-height: 1.5; // más cómodo para lectura en párrafos y listas
+    margin-bottom: 1.6rem; // espacio vertical estándar
+}
+
+// Uso en elementos base
+body {
+    @include font-size(body);
+}
+
+p {
+    @include font-size(paragraph);
+}
+
+ul,
+ol {
+    @include font-size(list);
+    padding-left: 2.4rem; // sangría estándar
+}
+
+ul {
+    list-style: none;
+}
+
+li {
+    @include font-size(list);
+    margin-bottom: 0.8rem; // espacio entre ítems
+}
+
+small {
+    @include font-size(small);
+}
+
+h1 {
+    @include font-size(h1);
+}
+
+h2 {
+    @include font-size(h2);
+}
+
+h3 {
+    @include font-size(h3);
+}
+
+h4 {
+    @include font-size(h4);
+}
+
+h5 {
+    @include font-size(h5);
+}
+
+h6 {
+    @include font-size(h6);
+}
+
+body,
+header {
+    margin: 0;
+    padding: 0;
+}

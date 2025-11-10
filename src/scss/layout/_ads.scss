@@ -1,15 +1,23 @@
 @use '../core/' as core;
+@use "../config/" as *;
 
-.ads__container {
-  margin-top: 50px;
-  background-color: core.$blue;
-  color: white;
-  text-align: justify;
-  padding-top: 20px;
-  padding-bottom: 30px;
-  padding: 1rem 2rem;
-}
+.ads {
+  width: 100%;
+  background-color: core.$primary;
 
-.ads__container h2 {
-  text-align: center;
+  .ads__container {
+    @include container($container-widths);
+
+    margin-top: 50px;
+    background-color: core.$blue;
+    color: white;
+    text-align: justify;
+    padding-top: 20px;
+    padding-bottom: 30px;
+    padding: 1rem 2rem;
+  }
+
+  .ads__container h2 {
+    text-align: center;
+  }
 }

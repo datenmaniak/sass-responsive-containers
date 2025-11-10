@@ -1,24 +1,34 @@
 @use '../core/' as core;
-@use '../config/mixins' as mix;
+@use "../config/" as *;
+
+
 
 
 
 .products {
+  width: 100%;
+  background-color: core.$primary;
 
-  h2 {
-    text-align: center;
-    font-family: core.$secondary-font;
-  }
-}
-
-@include mix.respond(tablet) {
-  .products__container {
+  &__container {
+    @include container($container-widths);
+    display: flex;
     justify-content: center;
     align-content: center;
+
+    // remove 
+    background-color: lightgreen;
+
+    h2 {
+      text-align: center;
+      font-family: core.$secondary-font;
+    }
+
+    // @include mix.respond(tablet) {
+
     // margin: 5px 8px;
     background-color: rgba(243, 237, 237, 0.7);
     // @include mix.grid-responsive(1.5rem);
-    @include mix.grid-fluid(250px, 1.7rem);
+    @include grid-fluid(250px, 1.7rem);
 
   }
 }
@@ -80,7 +90,7 @@
   }
 
   &__button {
-    @include mix.button-style(core.$primary);
+    @include button-style(core.$primary);
     // display: inline-block;
     // background: core.$color-button-bg;
     // color: core.$color-button-text;
@@ -176,5 +186,5 @@ p {
 }
 
 .card__button {
-  @include mix.button-style(core.$blue);
+  @include button-style(core.$blue);
 }

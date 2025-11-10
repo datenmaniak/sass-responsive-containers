@@ -1,8 +1,14 @@
-@use '../core/' as core;
+@use "../core/" as core;
+@use "../config/" as *;
+
 
 .footer {
+  width: 100%;
+  background-color: core.$primary;
 
   &__container {
+    @include container($container-widths);
+
     display: flex;
     justify-content: space-around;
     color: core.$beige;
@@ -10,9 +16,12 @@
     /* flex-wrap: wrap; */
     flex-direction: column;
     background-color: #0e0b12;
+    background-color: core.$bg-alt-pri;
     color: var(--beige);
     text-align: center;
-    // background: whitesmoke;
+
+    // remove
+    // background-color: lightseagreen;
   }
 
   &__logo {
